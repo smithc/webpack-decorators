@@ -1,0 +1,26 @@
+{
+  "name": "webpack-decorators-react",
+  "version": "0.0.1",
+  "description": "",
+  "main": "ReactWrapper.js",
+  "module": "ReactWrapper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "decorator",
+    "wrapper",
+    "interceptor",
+    "proxy"
+  ],
+  "author": "Chris Smith",
+  "license": "MIT",
+  "dependencies": {
+    "webpack-decorators": "^0.0.1"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}

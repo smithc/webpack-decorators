@@ -1,4 +1,4 @@
-const decorator = {
+const loggingDecorator = {
   createElement: function (originalFunc, ...args) {
     const type = args[0];
     const config = args[1];
@@ -10,4 +10,4 @@ const decorator = {
   },
 };
 
-export { decorator };
+export { loggingDecorator };
