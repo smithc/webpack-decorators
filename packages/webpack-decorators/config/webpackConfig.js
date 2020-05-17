@@ -1,7 +1,7 @@
 const reactDecoratorConfig = {
   resolve: {
     alias: {
-      react$: eval('require').resolve(`webpack-decorator-react`).ReactWrapper,
+      react$: require.resolve(`webpack-decorators-react`),
       "___react-original___$": require.resolve(`react`),
     },
   },
@@ -10,7 +10,7 @@ const reactDecoratorConfig = {
 const reactDomDecoratorConfig = {
   resolve: {
     alias: {
-      "react-dom$": eval('require').resolve(`webpack-decorator-react-dom`).ReactDOMWrapper,
+      "react-dom$": require.resolve(`webpack-decorators-react-dom`),
       "___react-dom-original___$": require.resolve(`react-dom`),
     },
   },
