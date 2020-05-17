@@ -7,10 +7,9 @@ export const createProxy = (module, moduleName) => {
     };
 
     // Create interceptor for each function defined in 'interceptorConfig'
-    const initializeDecorators = () => {
+    const initializeDecorators = (...interceptedFunctions) => {
         Object.getOwnPropertyNames(module)
-            .filter(prop => interceptorConfig[moduleName].interceptedFunctions.has(prop))
-            .filter(prop => typeof module[prop] === 'function')
+            .filter(prop => interceptedFunctions.includes(prop) && typeof module[prop] === 'function')
             .forEach(prop => {
                 moduleProxy[prop] = functionInterceptor.call(this, module, moduleName, prop);
                 Object.setPrototypeOf(moduleProxy[prop], Object.getPrototypeOf(module[prop]));
@@ -18,7 +17,7 @@ export const createProxy = (module, moduleName) => {
             });
     };
 
-    initializeDecorators();
+    initializeDecorators(...Array.from(interceptorConfig[moduleName].interceptedFunctions));
     registerConfigChangeCallback(moduleName, initializeDecorators);
 
     return moduleProxy;

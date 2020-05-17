@@ -5,7 +5,7 @@ export const functionInterceptor = (module, moduleName, targetFunction) => {
         .filter(decorator => decorator.hasOwnProperty(targetFunction))
         .reduce((prev, cur) => {
             const pipelinedFunction = function() {
-                return cur[targetFunction].bind(this, prev).apply(this, arguments);
+                return cur[targetFunction].bind(this, prev.bind(this)).apply(this, arguments);
             };
             return pipelinedFunction;
         }, module[targetFunction]);

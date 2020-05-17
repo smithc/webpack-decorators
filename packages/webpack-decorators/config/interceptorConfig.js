@@ -22,7 +22,7 @@ const registerConfigChangeCallback = (module, callback) => {
     moduleCallbacks.push(callback);
 }
 
-const onConfigChange = (module) => configCallbacks[module].forEach(callback => callback());
+const onConfigChange = (module, ...targetFunctions) => configCallbacks[module].forEach(callback => callback(...targetFunctions));
 
 const registerDecorator = (moduleName, decorator, ...targetFunctions) => {
     if (!interceptorConfig.hasOwnProperty(moduleName)) {
@@ -38,7 +38,7 @@ const registerDecorator = (moduleName, decorator, ...targetFunctions) => {
     );
 
     // Rebuild call-chains for affected functions
-    onConfigChange(moduleName);
+    onConfigChange(moduleName, ...targetFunctions);
 };
 
 export { interceptorConfig, registerDecorator, registerConfigChangeCallback };
