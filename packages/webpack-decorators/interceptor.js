@@ -1,7 +1,7 @@
 import { interceptorConfig } from './config/interceptorConfig';
 
-export const functionInterceptor = (module, targetFunction) => {
-    const callChain = interceptorConfig.react.decorators
+export const functionInterceptor = (module, moduleName, targetFunction) => {
+    const callChain = interceptorConfig[moduleName].decorators
         .filter(decorator => decorator.hasOwnProperty(targetFunction))
         .reduce((prev, cur) => {
             const pipelinedFunction = function() {
