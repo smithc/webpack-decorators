@@ -15,8 +15,12 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm ci
+      - run: npm test && npm build
+        working-directory: ./packages/webpack-decorators
       - run: npm test
+        working-directory: ./packages/react
+      - run: npm test
+        working-directory: ./packages/react-dom
 
   publish-npm:
     needs: build
@@ -27,8 +31,16 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
       - run: npm publish --access public
+        working-directory: ./packages/webpack-decorators
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      - run: npm publish --access public
+        working-directory: ./packages/react
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      - run: npm publish --access public
+        working-directory: ./packages/react-dom
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
@@ -41,7 +53,15 @@ jobs:
         with:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
-      - run: npm ci
       - run: npm publish
+        working-directory: ./packages/webpack-decorators
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.PUBLISH_GITHUB_TOKEN}}
+      - run: npm publish
+        working-directory: ./packages/react
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.PUBLISH_GITHUB_TOKEN}}
+      - run: npm publish
+        working-directory: ./packages/react-dom
         env:
           NODE_AUTH_TOKEN: ${{secrets.PUBLISH_GITHUB_TOKEN}}
