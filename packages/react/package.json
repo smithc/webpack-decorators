@@ -1,6 +1,6 @@
 {
   "name": "webpack-decorators-react",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "ReactWrapper.js",
   "module": "ReactWrapper.js",
@@ -16,10 +16,9 @@
   ],
   "author": "Chris Smith",
   "license": "MIT",
-  "dependencies": {
-    "webpack-decorators": "^0.0.1"
-  },
+  "dependencies": {},
   "peerDependencies": {
-    "react": "^16.13.1"  
+    "react": "^16.13.1",
+    "webpack-decorators": "^0.0.2"
   }
 }

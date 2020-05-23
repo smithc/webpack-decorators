@@ -1,6 +1,6 @@
 {
   "name": "webpack-decorators-react-dom",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "ReactDOMWrapper.js",
   "module": "ReactDOMWrapper.js",
@@ -17,10 +17,9 @@
   ],
   "author": "Chris Smith",
   "license": "MIT",
-  "dependencies": {
-    "webpack-decorators": "^0.0.1"
-  },
+  "dependencies": {},
   "peerDependencies": {
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "webpack-decorators": "^0.0.2"
   }
 }

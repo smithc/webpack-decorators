@@ -1,8 +1,12 @@
-import { createProxy } from 'webpack-decorators';
-
-import * as ReactDOM from '___react-dom-original___';
-export * from '___react-dom-original___';
+const { createProxy } = require('webpack-decorators');
+const ReactDOM = require('___react-dom-original___');
 
 const reactDOMProxy = createProxy(ReactDOM, 'react-dom');
 
-export default reactDOMProxy;
+module.exports = reactDOMProxy;
+
+Object.getOwnPropertyNames(reactDOMProxy).forEach(prop => {
+    module.exports[prop] = reactDOMProxy[prop];
+});
+
+module.exports.default = reactDOMProxy;

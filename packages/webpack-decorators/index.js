@@ -1,3 +1,3 @@
-export * from './config/interceptorConfig';
-export { functionInterceptor } from './interceptor';
-export { createProxy } from './proxyFactory';
+export * from './src/config/interceptorConfig';
+export { functionInterceptor } from './src/interceptor';
+export { createProxy } from './src/proxyFactory';

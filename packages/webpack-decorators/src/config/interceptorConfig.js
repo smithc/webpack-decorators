@@ -22,7 +22,11 @@ const registerConfigChangeCallback = (module, callback) => {
     moduleCallbacks.push(callback);
 }
 
-const onConfigChange = (module, ...targetFunctions) => configCallbacks[module].forEach(callback => callback(...targetFunctions));
+const onConfigChange = (module, ...targetFunctions) => {
+    if (Array.isArray(configCallbacks[module])) {
+        configCallbacks[module].forEach(callback => callback(...targetFunctions));
+    }
+};
 
 const registerDecorator = (moduleName, decorator, ...targetFunctions) => {
     if (!interceptorConfig.hasOwnProperty(moduleName)) {
