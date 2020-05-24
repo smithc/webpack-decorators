@@ -37,6 +37,16 @@ resolve: {
 }
 ```
 
+For react-dom/server:
+```
+resolve: {
+  alias: {
+    "react-dom/server$": require.resolve(`webpack-decorators-react-dom-server`),
+    "___react-dom-server-original___$": require.resolve(`react-dom/server`),
+  },
+}
+```
+
 3. Register your custom decorators
 
 ```

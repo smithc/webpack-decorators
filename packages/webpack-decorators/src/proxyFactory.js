@@ -1,5 +1,5 @@
 import { functionInterceptor } from './interceptor';
-import { interceptorConfig, registerConfigChangeCallback } from './config/interceptorConfig';
+import { getModuleConfiguration, registerConfigChangeCallback } from './config/interceptorConfig';
 
 export const createProxy = (module, moduleName) => {
     const moduleProxy = {
@@ -17,7 +17,7 @@ export const createProxy = (module, moduleName) => {
             });
     };
 
-    initializeDecorators(...Array.from(interceptorConfig[moduleName].interceptedFunctions));
+    initializeDecorators(...getModuleConfiguration(moduleName).interceptedFunctions);
     registerConfigChangeCallback(moduleName, initializeDecorators);
 
     return moduleProxy;

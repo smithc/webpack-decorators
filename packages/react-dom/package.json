@@ -19,7 +19,7 @@
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {
-    "react-dom": "^16.13.1",
+    "react-dom": "^16.0.0",
     "webpack-decorators": "^0.0.2"
   }
 }

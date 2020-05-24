@@ -1,19 +1,31 @@
 
 const interceptorConfig = {
     react: {
-        interceptedFunctions: new Set([
-            'createElement'
-        ]),
+        interceptedFunctions: new Set(),
         decorators: []
     },
     'react-dom': {
-        interceptedFunctions: new Set([
-            'render', 
-            'hydrate'
-        ]),
+        interceptedFunctions: new Set(),
         decorators: []
     }
 };
+
+const getModuleConfiguration = (moduleName) => {
+    const defaultConfig = { 
+        interceptedFunctions: new Set(),
+        decorators: []
+     };
+    return { ...defaultConfig, ...interceptorConfig[moduleName] };
+}
+
+const addModuleConfiguration = (moduleName) => {
+    if (!interceptorConfig[moduleName]) {
+        interceptorConfig[moduleName] = {
+            interceptedFunctions: new Set(),
+            decorators = []
+        };
+    }
+}
 
 const configCallbacks = {};
 
@@ -29,11 +41,7 @@ const onConfigChange = (module, ...targetFunctions) => {
 };
 
 const registerDecorator = (moduleName, decorator, ...targetFunctions) => {
-    if (!interceptorConfig.hasOwnProperty(moduleName)) {
-        // do something here
-        console.debug(`Unable to intercept module; module '${moduleName}' doesn't exist`);
-        return;
-    }
+    addModuleConfiguration(moduleName);
 
     interceptorConfig[moduleName].decorators.push(decorator);
 
@@ -45,4 +53,4 @@ const registerDecorator = (moduleName, decorator, ...targetFunctions) => {
     onConfigChange(moduleName, ...targetFunctions);
 };
 
-export { interceptorConfig, registerDecorator, registerConfigChangeCallback };
+export { getModuleConfiguration, registerDecorator, registerConfigChangeCallback };
