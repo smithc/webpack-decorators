@@ -22,7 +22,7 @@ const addModuleConfiguration = (moduleName) => {
     if (!interceptorConfig[moduleName]) {
         interceptorConfig[moduleName] = {
             interceptedFunctions: new Set(),
-            decorators = []
+            decorators: []
         };
     }
 }
