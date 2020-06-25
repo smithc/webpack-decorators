@@ -1,6 +1,6 @@
 {
   "name": "webpack-decorators-react",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "ReactWrapper.js",
   "module": "ReactWrapper.js",
@@ -19,6 +19,6 @@
   "dependencies": {},
   "peerDependencies": {
     "react": "^16.0.0",
-    "webpack-decorators": "^0.0.3"
+    "webpack-decorators": "^0.0.4"
   }
 }

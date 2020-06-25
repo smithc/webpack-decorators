@@ -1,5 +1,5 @@
 import { functionInterceptor } from './interceptor';
-import { getModuleConfiguration, registerConfigChangeCallback } from './config/interceptorConfig';
+import { registerConfigChangeCallback } from './config/interceptorConfig';
 
 export const createProxy = (module, moduleName) => {
     const moduleProxy = {
@@ -17,7 +17,9 @@ export const createProxy = (module, moduleName) => {
             });
     };
 
-    initializeDecorators(...getModuleConfiguration(moduleName).interceptedFunctions);
+    // To support late-binding of decorators, we'll virtualize all exported functions
+    // (for those cases when an exported function is 'pinned' or cached)
+    initializeDecorators(...Object.getOwnPropertyNames(module));
     registerConfigChangeCallback(moduleName, initializeDecorators);
 
     return moduleProxy;
