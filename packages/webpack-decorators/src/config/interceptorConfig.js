@@ -45,7 +45,7 @@ const registerDecorator = (moduleName, decorator, ...targetFunctions) => {
 
     interceptorConfig[moduleName].decorators.push(decorator);
 
-    targetFunctions.forEach(func => 
+    [...targetFunctions, ...Object.keys(decorator)].forEach(func => 
         interceptorConfig[moduleName].interceptedFunctions.add(func)
     );
 
