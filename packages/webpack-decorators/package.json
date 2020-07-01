@@ -9,6 +9,8 @@
     "test": "exit 0",
     "build": "webpack"
   },
+  "homepage": "https://github.com/smithc/webpack-decorators",
+  "repository": "smithc/webpack-decorators",
   "keywords": [
     "react",
     "decorator",
