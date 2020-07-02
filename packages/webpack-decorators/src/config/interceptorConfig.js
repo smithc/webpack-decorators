@@ -40,7 +40,8 @@ const onConfigChange = (module, ...targetFunctions) => {
     }
 };
 
-const registerDecorator = (moduleName, decorator, ...targetFunctions) => {
+const registerDecorator = (moduleName, decorator) => {
+    const targetFunctions = Object.keys(decorator);
     addModuleConfiguration(moduleName);
 
     interceptorConfig[moduleName].decorators.push(decorator);
